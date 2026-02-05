@@ -43,3 +43,6 @@ cd .\Project_1\-presentation
 pdflatex -interaction=nonstopmode -halt-on-error presentation_p1.tex
 pdflatex -interaction=nonstopmode -halt-on-error presentation_p1.tex
 ```
+```powershell
+pdflatex -interaction=nonstopmode -halt-on-error presentation_p1.tex; pdflatex -interaction=nonstopmode -halt-on-error presentation_p1.tex
+```

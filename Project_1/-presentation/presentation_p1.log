@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2026.2.5)  5 FEB 2026 16:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2026.2.5)  5 FEB 2026 16:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1036,29 +1036,31 @@ Dictionary: translator-numbers-dictionary, Language: English
 heorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 ) (presentation_p1.nav)
+LaTeX Font Info:    Trying to load font information for U+msa on input line 40.
 
-[1
-
-{C:/Users/theod/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-(presentation_p1.toc
-LaTeX Font Info:    Trying to load font information for U+msa on input line 2.
 
 (C:\Users\theod\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 2.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 40.
+
 
 (C:\Users\theod\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on inp
-ut line 2.
+ut line 40.
 
 (C:\Users\theod\AppData\Local\Programs\MiKTeX\tex/latex/sansmathaccent\ot1mathk
 erncmss.fd
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/ma
 thkerncmss.
-))
+)
+
+[1
+
+{C:/Users/theod/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+(presentation_p1.toc)
 
 [2
 
@@ -1071,21 +1073,21 @@ thkerncmss.
 [4
 
 ]
-<figs/uniform_rand_seq.png, id=191, 412.6617pt x 332.442pt>
+<figs/uniform_rand_seq.png, id=194, 412.6617pt x 332.442pt>
 File: figs/uniform_rand_seq.png Graphic file (type png)
 <use figs/uniform_rand_seq.png>
-Package pdftex.def Info: figs/uniform_rand_seq.png  used on input line 96.
+Package pdftex.def Info: figs/uniform_rand_seq.png  used on input line 100.
 (pdftex.def)             Requested size: 176.26358pt x 141.99867pt.
 
 
 [5
 
  <./figs/uniform_rand_seq.png>]
-<figs/uniform_histogram_vs_theory.png, id=224, 412.6617pt x 332.442pt>
+<figs/uniform_histogram_vs_theory.png, id=227, 412.6617pt x 332.442pt>
 File: figs/uniform_histogram_vs_theory.png Graphic file (type png)
 <use figs/uniform_histogram_vs_theory.png>
 Package pdftex.def Info: figs/uniform_histogram_vs_theory.png  used on input li
-ne 103.
+ne 107.
 (pdftex.def)             Requested size: 237.04564pt x 190.96497pt.
 
 
@@ -1094,7 +1096,7 @@ ne 103.
  <./figs/uniform_histogram_vs_theory.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 105.
+(hyperref)                removing `superscript' on input line 109.
 
 
 
@@ -1105,32 +1107,32 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 [8
 
 ]
-<figs/normal_random_seq.png, id=309, 411.2163pt x 332.442pt>
+<figs/normal_random_seq.png, id=312, 411.2163pt x 332.442pt>
 File: figs/normal_random_seq.png Graphic file (type png)
 <use figs/normal_random_seq.png>
-Package pdftex.def Info: figs/normal_random_seq.png  used on input line 150.
+Package pdftex.def Info: figs/normal_random_seq.png  used on input line 154.
 (pdftex.def)             Requested size: 175.6462pt x 141.99867pt.
 
 
 [9
 
  <./figs/normal_random_seq.png>]
-<figs/normal_histogram_vs_theory.png, id=340, 419.166pt x 332.442pt>
+<figs/normal_histogram_vs_theory.png, id=343, 419.166pt x 332.442pt>
 File: figs/normal_histogram_vs_theory.png Graphic file (type png)
 <use figs/normal_histogram_vs_theory.png>
 Package pdftex.def Info: figs/normal_histogram_vs_theory.png  used on input lin
-e 157.
+e 161.
 (pdftex.def)             Requested size: 240.78192pt x 190.96497pt.
 
 
 [10
 
  <./figs/normal_histogram_vs_theory.png>]
-<figs/normal_curve_vs_theory.png, id=368, 432.8973pt x 332.442pt>
+<figs/normal_curve_vs_theory.png, id=371, 432.8973pt x 332.442pt>
 File: figs/normal_curve_vs_theory.png Graphic file (type png)
 <use figs/normal_curve_vs_theory.png>
 Package pdftex.def Info: figs/normal_curve_vs_theory.png  used on input line 16
-1.
+5.
 (pdftex.def)             Requested size: 248.6696pt x 190.96497pt.
 
 
@@ -1145,11 +1147,11 @@ Package pdftex.def Info: figs/normal_curve_vs_theory.png  used on input line 16
 [13
 
 ]
-<figs/clt_histogram_of_sample_means.png, id=452, 403.2666pt x 332.442pt>
+<figs/clt_histogram_of_sample_means.png, id=455, 403.2666pt x 332.442pt>
 File: figs/clt_histogram_of_sample_means.png Graphic file (type png)
 <use figs/clt_histogram_of_sample_means.png>
 Package pdftex.def Info: figs/clt_histogram_of_sample_means.png  used on input 
-line 213.
+line 217.
 (pdftex.def)             Requested size: 172.25058pt x 141.99867pt.
 
 
@@ -1160,10 +1162,10 @@ line 213.
 [15
 
 ]
-<figs/random_processes.png, id=508, 715.473pt x 570.933pt>
+<figs/random_processes.png, id=511, 715.473pt x 570.933pt>
 File: figs/random_processes.png Graphic file (type png)
 <use figs/random_processes.png>
-Package pdftex.def Info: figs/random_processes.png  used on input line 233.
+Package pdftex.def Info: figs/random_processes.png  used on input line 237.
 (pdftex.def)             Requested size: 239.30557pt x 190.961pt.
 
 
@@ -1174,20 +1176,20 @@ Package pdftex.def Info: figs/random_processes.png  used on input line 233.
 [17
 
 ]
-<figs/ensemble_stats.png, id=565, 714.7503pt x 570.933pt>
+<figs/ensemble_stats.png, id=568, 714.7503pt x 570.933pt>
 File: figs/ensemble_stats.png Graphic file (type png)
 <use figs/ensemble_stats.png>
-Package pdftex.def Info: figs/ensemble_stats.png  used on input line 248.
+Package pdftex.def Info: figs/ensemble_stats.png  used on input line 252.
 (pdftex.def)             Requested size: 239.06384pt x 190.961pt.
 
 
 [18
 
  <./figs/ensemble_stats.png>]
-<figs/ergodicity.png, id=594, 860.013pt x 281.853pt>
+<figs/ergodicity.png, id=597, 860.013pt x 281.853pt>
 File: figs/ergodicity.png Graphic file (type png)
 <use figs/ergodicity.png>
-Package pdftex.def Info: figs/ergodicity.png  used on input line 255.
+Package pdftex.def Info: figs/ergodicity.png  used on input line 259.
 (pdftex.def)             Requested size: 435.24141pt x 142.64214pt.
 
 
@@ -1220,48 +1222,49 @@ Package rerunfilecheck Info: File `presentation_p1.out' has not changed.
 (rerunfilecheck)             Checksum: E9DC94201ED57C96F8A6B63D3B188353;1199.
  ) 
 Here is how much of TeX's memory you used:
- 22990 strings out of 468134
- 449329 string characters out of 5430741
+ 22992 strings out of 468134
+ 449350 string characters out of 5430741
  817895 words of memory out of 5000000
- 51064 multiletter control sequences out of 15000+600000
- 649045 words of font info for 92 fonts, out of 8000000 for 9000
+ 51065 multiletter control sequences out of 15000+600000
+ 649358 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,16n,123p,392b,689s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss
-0800.pk> <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
-0\ecsx1000.pk> <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
-/dpi600\ecrm0900.pk> <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
-pen/ec/dpi600\ectt1000.pk> <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/ljfour
-/jknappen/ec/dpi600\ecss0600.pk> <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/
-ljfour/jknappen/ec/dpi600\ecsx0900.pk> <C:\Users\theod\AppData\Local\MiKTeX\fon
-ts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\theod\AppData\Local\MiKT
-eX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss0900.pk> <C:\Users\theod\AppData\Loca
-l\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss0500.pk> <C:\Users\theod\AppDat
-a\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss0700.pk> <C:\Users\theod\
-AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss1000.pk> <C:\Users\
-theod\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss1440.pk><C:/U
-sers/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.
+ <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecsx
+1000.pk> <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
+0\ecrm0900.pk> <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
+/dpi600\ectt1000.pk> <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
+pen/ec/dpi600\ecss0600.pk> <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/ljfour
+/jknappen/ec/dpi600\ecsx0900.pk> <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/
+ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\theod\AppData\Local\MiKTeX\fon
+ts/pk/ljfour/jknappen/ec/dpi600\ecss0900.pk> <C:\Users\theod\AppData\Local\MiKT
+eX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss0500.pk> <C:\Users\theod\AppData\Loca
+l\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\theod\AppDat
+a\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss0800.pk> <C:\Users\theod\
+AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss0700.pk> <C:\Users\
+theod\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss1000.pk> <C:\
+Users\theod\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss1440.pk
+><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mex10.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
+onts/cmextra/cmex9.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmmi10.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/theod/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/theod/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Users/theod/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Users/theo
+d/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss9.pfb><C:/Us
+ers/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi10.
 pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
-mextra/cmex9.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmmi10.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmmi8.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/theod/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Users/theod/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Users/theod/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss9.pfb><C:/Users/th
-eod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C
-:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss
-i8.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
-s/cm/cmssi9.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/publi
-c/amsfonts/cm/cmsy10.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/ty
-pe1/public/amsfonts/cm/cmsy6.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/
-fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/theod/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/theod/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/theod/AppDat
-a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on presentation_p1.pdf (21 pages, 1263788 bytes).
+m/cmssi8.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmssi9.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmsy10.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fo
+nts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/theod/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/theod/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/theod/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/theod/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on presentation_p1.pdf (21 pages, 1273548 bytes).
 PDF statistics:
- 1119 PDF objects out of 1200 (max. 8388607)
+ 1155 PDF objects out of 1200 (max. 8388607)
  49 named destinations out of 1000 (max. 500000)
  184 words of extra memory for PDF output out of 10000 (max. 10000000)
 
