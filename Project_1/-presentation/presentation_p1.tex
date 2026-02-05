@@ -33,10 +33,10 @@
 
 \begin{frame}
 	\titlepage
-	\vspace{-1.0em}
-	\centering
-	\footnotesize
-	Code: \href{https://github.com/Twaal/Statistical_Signal_Processing_IN5340/tree/master/Project_1}{\nolinkurl{github.com/Twaal/Statistical_Signal_Processing_IN5340/tree/master/Project_1}}
+\end{frame}
+
+\begin{frame}{Agenda}
+	\tableofcontents
 \end{frame}
 
 \section{1. Random Variables}
@@ -52,10 +52,10 @@
 \end{itemize}
 \vspace{0.5em}
 \small
-Simulation in notebook: $N=5000$ samples.
+Simulation in notebook: $N=5000$ samples (seeded).
 \end{frame}
 
-\begin{frame}{Uniform RV: Theoretical mean and variance (derivation)}
+\begin{frame}{Uniform RV: Theoretical mean and variance derivation}
 Assume $f_X(x)=1$ for $x\in[0,1]$ and $0$ otherwise.
 \vspace{0.5em}
 \begin{align*}
@@ -173,7 +173,7 @@ Histogram-based density estimate with the theoretical Gaussian curve overlay.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{CLT: Theoretical mean and variance (derivation)}
+\begin{frame}{CLT: Theoretical mean and variance derivation}
 Using linearity of expectation and independence:
 \begin{align*}
 \mathbb{E}[Y]
@@ -206,6 +206,7 @@ In the notebook, $Y$ is centered as $Y_\text{norm}=Y-\mathbb{E}[Y]$, so $\mathbb
 \end{itemize}
 \textbf{Theory:}
 \begin{itemize}
+	\item $m = 0$
 	\item $\sigma^2 = 1/144 \approx 0.00694$
 \end{itemize}
 \end{columns}
@@ -218,7 +219,7 @@ We analyze three random processes (generated from pseudo-random uniform noise):
 \vspace{0.25em}
 \small
 \begin{align*}
-\text{rp1: }\; v[n] &= \big(\mathrm{rand}-0.5\big)\,\underbrace{b\sin(\pi n/N)}_{\text{time-varying scale}} + \underbrace{a n}_{\text{time-varying mean}},\\
+\text{rp1: }\; v[n] &= \big(\mathrm{rand}-0.5\big)\,\underbrace{b\sin(\pi n/N)}_{\text{time-varying scale}} + \underbrace{a n}_{\text{time-varying mean}},\quad \\
 \text{rp2: }\; v[n] &= \big(\mathrm{rand}-0.5\big)\,m + a,\\
 \text{rp3: }\; v[n] &= \big(\mathrm{rand}-0.5\big)\,M_r + A_r,\quad A_r,M_r \text{ fixed per realization.}
 \end{align*}
