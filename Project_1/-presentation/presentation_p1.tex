@@ -1,0 +1,285 @@
+% IN5340/IN9340 Project I Presentation
+% Build: pdflatex presentation_p1.tex
+
+\documentclass[aspectratio=169,10pt]{beamer}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{mathtools}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\graphicspath{{figs/}}
+
+% Figure helpers (keeps plots within the slide)
+\newcommand{\fullfig}[2][]{%
+	\centering
+	\includegraphics[width=\linewidth,height=0.78\textheight,keepaspectratio,#1]{#2}%
+}
+\newcommand{\colfig}[2][]{%
+	\includegraphics[width=\linewidth,height=0.58\textheight,keepaspectratio,#1]{#2}%
+}
+
+\title[IN5340 Project I]{IN5340/IN9340 Project I: Random Variables and Random Processes}
+\author{Theodor W\aa lberg}
+\institute{University of Oslo}
+\date{February 2026}
+
+\begin{document}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\begin{frame}{Agenda}
+	\tableofcontents
+\end{frame}
+
+\section{1. Random Variables}
+
+\subsection{1.1 Uniform random variable \texorpdfstring{$X \sim \mathcal{U}(0,1)$}{X ~ U(0,1)}}
+
+\begin{frame}{Uniform RV: Task}
+\begin{itemize}
+	\item Generate a long sequence $x[n]$ of i.i.d. samples from $\mathcal{U}(0,1)$.
+	\item Estimate the PDF using a manually-normalized histogram.
+	\item Estimate mean $m_x = \mathbb{E}[X]$ and variance $\sigma_x^2 = \mathbb{E}[(X-m_x)^2]$.
+	\item Overlay the theoretical PDF and compare theory vs estimates.
+\end{itemize}
+\vspace{0.5em}
+\small
+Simulation in notebook: $N=5000$ samples.
+\end{frame}
+
+\begin{frame}{Uniform RV: Theoretical mean and variance (derivation)}
+Assume $f_X(x)=1$ for $x\in[0,1]$ and $0$ otherwise.
+\vspace{0.5em}
+\begin{align*}
+\mathbb{E}[X]
+&= \int_{-\infty}^{\infty} x\, f_X(x)\,dx
+= \int_{0}^{1} x\,dx
+= \left.\frac{x^2}{2}\right|_{0}^{1}
+= \frac{1}{2}.\\
+\mathbb{E}[X^2]
+&= \int_{0}^{1} x^2\,dx
+= \left.\frac{x^3}{3}\right|_{0}^{1}
+= \frac{1}{3}.\\
+\mathrm{Var}(X)
+&= \mathbb{E}[X^2]-\mathbb{E}[X]^2
+= \frac{1}{3}-\left(\frac{1}{2}\right)^2
+= \frac{1}{12}\approx 0.0833.
+\end{align*}
+\end{frame}
+
+\begin{frame}{Uniform RV: Sequence and basic statistics}
+\begin{columns}[T,onlytextwidth]
+\column{0.62\textwidth}
+\centering
+\colfig{uniform_rand_seq.png}
+\column{0.38\textwidth}
+\small
+\textbf{Estimated (one run):}
+\begin{itemize}
+	\item $\hat m_x \approx 0.4968$
+	\item $\hat\sigma_x^2 \approx 0.08387$
+\end{itemize}
+\textbf{Theory:}
+\begin{itemize}
+	\item $m_x = 1/2$
+	\item $\sigma_x^2 = 1/12 \approx 0.08333$
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Uniform RV: PDF estimate vs theory}
+\fullfig{uniform_histogram_vs_theory.png}
+\vspace{0.5em}
+\small
+Histogram is normalized to integrate to 1; the theoretical PDF is constant on $[0,1]$.
+\end{frame}
+
+\subsection{1.2 Gaussian random variable \texorpdfstring{$X \sim \mathcal{N}(\mu,\sigma^2)$}{X ~ N(mu,sigma^2)}}
+
+\begin{frame}{Gaussian RV: Task}
+\begin{itemize}
+	\item Generate i.i.d. samples from a Gaussian RV (Matlab: \texttt{randn}, Python: \texttt{np.random.normal}).
+	\item Estimate PDF (histogram) + mean and variance.
+	\item Overlay the theoretical Gaussian PDF.
+\end{itemize}
+\vspace{0.5em}
+\small
+In the notebook: $\mu=0$, $\sigma=1$, $N=5000$.
+\end{frame}
+
+\begin{frame}{Gaussian RV: Theoretical mean and variance}
+For $X\sim\mathcal{N}(\mu,\sigma^2)$ with density
+\[
+f_X(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right),
+\]
+the moments are
+\[
+\mathbb{E}[X]=\mu,\qquad \mathrm{Var}(X)=\sigma^2.
+\]
+\vspace{0.5em}
+\small
+Here: $\mu=0$, $\sigma^2=1$.
+\end{frame}
+
+\begin{frame}{Gaussian RV: Sequence}
+\begin{columns}[T,onlytextwidth]
+\column{0.62\textwidth}
+\centering
+\colfig{normal_random_seq.png}
+\column{0.38\textwidth}
+\small
+\textbf{Estimated (one run):}
+\begin{itemize}
+	\item $\hat\mu \approx -2.2\cdot10^{-4}$
+	\item $\widehat{\sigma^2} \approx 1.0013$
+\end{itemize}
+\textbf{Theory:}
+\begin{itemize}
+	\item $\mu=0$
+	\item $\sigma^2=1$
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Gaussian RV: PDF estimate vs theory}
+\fullfig{normal_histogram_vs_theory.png}
+\vspace{0.5em}
+\small
+Histogram-based density estimate with the theoretical Gaussian curve overlay.
+\end{frame}
+
+\begin{frame}{Gaussian RV: Experimental vs theoretical PDF}
+\fullfig{normal_curve_vs_theory.png}
+\end{frame}
+
+\subsection{1.3 Central Limit Theorem}
+
+\begin{frame}{CLT: Setup}
+\begin{itemize}
+	\item Generate 12 independent uniform RVs and average:
+	\[
+	Y = \frac{1}{12}\sum_{k=1}^{12} X_k,\qquad X_k \overset{iid}{\sim} \mathcal{U}(0,1).
+	\]
+	\item Estimate the PDF of $Y$ and compare to a Gaussian approximation.
+	\item Derive theoretical mean and variance for $Y$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{CLT: Theoretical mean and variance (derivation)}
+Using linearity of expectation and independence:
+\begin{align*}
+\mathbb{E}[Y]
+&= \mathbb{E}\left[\frac{1}{12}\sum_{k=1}^{12}X_k\right]
+= \frac{1}{12}\sum_{k=1}^{12}\mathbb{E}[X_k]
+= \mathbb{E}[X]
+= \frac{1}{2}.\\
+\mathrm{Var}(Y)
+&= \mathrm{Var}\left(\frac{1}{12}\sum_{k=1}^{12}X_k\right)
+= \frac{1}{12^2}\sum_{k=1}^{12}\mathrm{Var}(X_k)\quad (\text{independent})\\
+&= \frac{12}{144}\cdot\frac{1}{12}
+= \frac{1}{144}\approx 0.00694.
+\end{align*}
+\vspace{0.25em}
+\small
+In the notebook, $Y$ is centered as $Y_\text{norm}=Y-\mathbb{E}[Y]$, so $\mathbb{E}[Y_\text{norm}]=0$ and $\mathrm{Var}(Y_\text{norm})=\mathrm{Var}(Y)$.
+\end{frame}
+
+\begin{frame}{CLT: Histogram of sample means}
+\begin{columns}[T,onlytextwidth]
+\column{0.62\textwidth}
+\centering
+\colfig{clt_histogram_of_sample_means.png}
+\column{0.38\textwidth}
+\small
+\textbf{Estimated (one run):}
+\begin{itemize}
+	\item $\hat m \approx 0$ (after centering)
+	\item $\hat\sigma^2 \approx 0.00693$
+\end{itemize}
+\textbf{Theory:}
+\begin{itemize}
+	\item $\sigma^2 = 1/144 \approx 0.00694$
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\section{2. Stationarity and Ergodicity}
+
+\begin{frame}{Random processes in the assignment}
+We analyze three random processes (generated from pseudo-random uniform noise):
+\vspace{0.25em}
+\small
+\begin{align*}
+\text{rp1: }\; v[n] &= \big(\mathrm{rand}-0.5\big)\,\underbrace{b\sin(\pi n/N)}_{\text{time-varying scale}} + \underbrace{a n}_{\text{time-varying mean}},\\
+\text{rp2: }\; v[n] &= \big(\mathrm{rand}-0.5\big)\,m + a,\\
+\text{rp3: }\; v[n] &= \big(\mathrm{rand}-0.5\big)\,M_r + A_r,\quad A_r,M_r \text{ fixed per realization.}
+\end{align*}
+\vspace{0.25em}
+\normalsize
+Goal: decide stationarity/ergodicity by inspection and by ensemble/time averages.
+\end{frame}
+
+\begin{frame}{2.1 Inspection: realizations (M=4, N=100)}
+\fullfig{random_processes.png}
+\end{frame}
+
+\begin{frame}{2.1 Stationary vs ergodic (qualitative conclusion)}
+\begin{itemize}
+	\item \textbf{Process 1}: non-stationary (mean and scale vary with time) $\Rightarrow$ non-ergodic.
+	\item \textbf{Process 2}: stationary (constant mean/variance) and appears ergodic in mean/variance.
+	\item \textbf{Process 3}: stationary in distribution, but realization-dependent offset/scale $\Rightarrow$ non-ergodic.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{2.2 Ensemble averages (M=80, N=200)}
+\fullfig{ensemble_stats.png}
+\vspace{0.25em}
+\small
+Ensemble mean/standard deviation vs time: rp1 varies with time; rp2 roughly constant; rp3 roughly constant but hides realization-dependent parameters.
+\end{frame}
+
+\begin{frame}{2.3 Time averages + images (M=4, N=1000)}
+\fullfig{ergodicity.png}
+\vspace{0.25em}
+\small
+Imagesc-style view: time on $x$, realization on $y$. Time-variation across columns suggests non-stationarity; large realization-to-realization offsets suggest non-ergodicity.
+\end{frame}
+
+\begin{frame}{2.3 Time averages: example output (one run)}
+\small
+\begin{itemize}
+	\item rp1 time-averages (per realization) are similar but the process is non-stationary, so not ergodic.
+	\item rp2 time-averages cluster around the ensemble mean (consistent with ergodicity).
+	\item rp3 time-averages differ significantly across realizations (non-ergodic in mean).
+\end{itemize}
+\vspace{0.5em}
+\footnotesize
+Example (from notebook stdout):
+\[
+\bar x_{\text{time}}^{(rp2)} \approx [0.475,\;0.453,\;0.526,\;0.515],\qquad
+\bar x_{\text{time}}^{(rp3)} \approx [0.154,\;0.909,\;0.387,\;0.047].
+\]
+\end{frame}
+
+\section*{Summary}
+
+\begin{frame}{Summary}
+\begin{itemize}
+	\item Uniform and Gaussian RV experiments: estimated mean/variance and PDF match theory with small finite-sample deviations.
+	\item CLT: the average of 12 uniforms is well-approximated by a Gaussian; theory gives $\sigma^2=1/144$.
+	\item Random processes: rp1 non-stationary/non-ergodic; rp2 stationary/ergodic; rp3 stationary but non-ergodic.
+\end{itemize}
+\vspace{0.5em}
+\small
+All code and figures reproduced from the accompanying notebook.
+\end{frame}
+
+\end{document}
