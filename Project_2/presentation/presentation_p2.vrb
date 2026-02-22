@@ -1,0 +1,14 @@
+\frametitle{3A: LS model and fine-delay formula}
+\scriptsize
+\begin{verbatim}
+y = np.log(upsampled_intensities[ch, selected_indices])
+t_selected = selected_indices * dt
+H = np.column_stack([np.ones(len(t_selected)), t_selected, t_selected**2])
+a_hat, b_hat, c_hat = np.linalg.lstsq(H, y, rcond=None)[0]
+t_peak = -b_hat / (2 * c_hat)
+\end{verbatim}
+\normalsize
+Model:
+\[
+\ln I(t) = a + bt + ct^2, \qquad \hat\tau_{\mathrm{LSE}} = -\frac{\hat b}{2\hat c}.
+\]

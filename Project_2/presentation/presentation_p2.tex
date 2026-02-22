@@ -1,0 +1,284 @@
+% IN5340/IN9340 Project II Presentation
+% Build (from this folder): pdflatex -interaction=nonstopmode -halt-on-error presentation_p2.tex
+
+\documentclass[aspectratio=169,10pt]{beamer}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{mathtools}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+
+\graphicspath{{figs/}}
+
+\newcommand{\fullfig}[2][]{%
+\centering
+\includegraphics[width=\linewidth,height=0.78\textheight,keepaspectratio,#1]{#2}%
+}
+\newcommand{\colfig}[2][]{%
+\includegraphics[width=\linewidth,height=0.58\textheight,keepaspectratio,#1]{#2}%
+}
+
+\title[IN5340 Project II]{IN5340/IN9340 Project II: Estimation Theory}
+\author{Theodor W\aa lberg}
+\institute{University of Oslo}
+\date{February 2026}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\vspace{-1.0em}
+\centering
+\footnotesize
+Code: \href{https://github.com/Twaal/Statistical_Signal_Processing_IN5340/tree/master/Project_2}{\nolinkurl{github.com/Twaal/Statistical_Signal_Processing_IN5340/tree/master/Project_2}}
+\end{frame}
+
+\begin{frame}{Agenda}
+\begin{itemize}
+\item Introduction and dataset
+\item 1A--1D: Maximum likelihood time-delay estimation
+\item 2A: Cram\'er--Rao lower bound
+\item 3A--3B: Least squares delay estimation and comparison
+\item Summary
+\end{itemize}
+\end{frame}
+
+\section{Introduction}
+
+\begin{frame}{Project scope and data}
+\begin{itemize}
+\item Goal: estimate time delay of strongest reflector in sonar data (32 channels).
+\item Dataset: \texttt{sonardata2.mat}, complex matrix $\mathbf{data}\in\mathbb{C}^{8192\times 32}$.
+\item Known parameters from assignment/code: $B=30\,$kHz, $f_c=100\,$kHz, $f_s=40\,$kHz, $T_p=8\,$ms.
+\item Methods covered: ML (matched filter), CRLB, and LSE fine delay estimation.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Raw channel example}
+\fullfig{plot_01.png}
+\end{frame}
+
+\section{1. Maximum Likelihood Time Delay}
+
+\subsection{Exercise 1A}
+
+\begin{frame}{1A: ML estimator derivation}
+Assume
+\[
+x(t)=s(t-T_0)+w(t),\qquad x[n]=s(n\Delta-\tau_0)+w[n],\; w[n]\sim\mathcal{N}(0,\sigma_w^2).
+\]
+For fixed $\tau_0$, maximizing likelihood is equivalent to minimizing
+\[
+J(\tau_0)=\sum_{n=0}^{N-1}\left(x[n]-s(n\Delta-\tau_0)\right)^2.
+\]
+Expanding $J(\tau_0)$ gives ML as cross-correlation maximization:
+\[
+\hat{\tau}_{\mathrm{ML}}=\arg\max_{\tau_0}\sum_{n=0}^{N-1}x[n]s(n\Delta-\tau_0).
+\]
+\vspace{0.5em}
+\small
+Interpretation: delay is chosen at matched-filter peak.
+\end{frame}
+
+\subsection{Exercise 1B}
+
+\begin{frame}[fragile]{1B: Implementing chirp and matched filter}
+\scriptsize
+\begin{verbatim}
+# chirp
+B = 30000; fs = 40000; tp = 0.008
+t = np.arange(0, tp/2, 1/fs)
+a = B / tp
+chirp = np.exp(1j * (2*np.pi) * a * t**2 / 2)
+
+# matched filter for channel 16
+x = data[:, 15]
+matched_filter_output = correlate(x, chirp, mode='full')
+\end{verbatim}
+\normalsize
+Positive-delay part is used.
+\end{frame}
+
+\begin{frame}{1B: Chirp signal (time and frequency)}
+\fullfig{plot_02.png}
+\end{frame}
+
+\begin{frame}{1B: Matched filter output, channel 16}
+\fullfig{plot_03.png}
+\vspace{0.25em}
+\small
+Notebook print: correlation length $=8351$, original signal length $=8192$.
+\end{frame}
+
+\subsection{Exercise 1C}
+
+\begin{frame}[fragile]{1C: Pulse compression on all channels}
+\scriptsize
+\begin{verbatim}
+pc_list = []
+for ch in range(num_channels):
+    y_full = correlate(data[:, ch], chirp, mode='full')
+    pc_list.append(y_full)
+pulse_compressed_full = np.column_stack(pc_list)
+
+start_idx = len(chirp) - 1
+pulse_compressed = pulse_compressed_full[start_idx:, :]
+
+before_mag_all = np.abs(data[:1600, :]).T
+after_mag_all  = np.abs(pulse_compressed[:1600, :]).T
+\end{verbatim}
+\end{frame}
+
+\begin{frame}{1C: Before vs after pulse compression}
+\fullfig{plot_04.png}
+\end{frame}
+
+\begin{frame}{1C: Discussion}
+\begin{itemize}
+\item Before compression: energy is spread in time and appears more noise-like.
+\item After matched filtering: peaks are sharper and stronger.
+\item Detectability and time-delay resolution improve.
+\item Output remains complex because both received data and chirp reference are complex.
+\end{itemize}
+\end{frame}
+
+\subsection{Exercise 1D}
+
+\begin{frame}[fragile]{1D: Peak detection per channel}
+\scriptsize
+\begin{verbatim}
+peak_indices = np.argmax(after_mag_all, axis=1)
+
+after_mag_all_upsampled_4 = resample(after_mag_all,
+                                     after_mag_all.shape[1]*4, axis=1)
+after_mag_all_upsampled_8 = resample(after_mag_all,
+                                     after_mag_all.shape[1]*8, axis=1)
+peak_indices_upsampled[4] = np.argmax(after_mag_all_upsampled_4, axis=1)
+peak_indices_upsampled[8] = np.argmax(after_mag_all_upsampled_8, axis=1)
+\end{verbatim}
+\end{frame}
+
+\begin{frame}{1D: Peak per channel, no upsampling}
+\fullfig{plot_05.png}
+\end{frame}
+
+\begin{frame}{1D: Delay estimates with upsampling x4 and x8}
+\fullfig{plot_06.png}
+\end{frame}
+
+\begin{frame}{1D: Interpretation}
+\begin{itemize}
+\item Delays are very similar across channels, with small channel-dependent differences.
+\item Main peak location is around sample index $\approx 304$ in the 1600-sample window.
+\item After upsampling, index values scale with factor, while physical delay stays consistent.
+\end{itemize}
+\end{frame}
+
+\section{2. Cram\'er--Rao Lower Bound}
+
+\subsection{Exercise 2A}
+
+\begin{frame}[fragile]{2A: SNR and CRLB computation}
+\scriptsize
+\begin{verbatim}
+peak_magnitudes = after_mag_all[np.arange(after_mag_all.shape[0]), peak_indices]
+peak_intensities = peak_magnitudes**2
+noise_intensities = np.mean(np.delete(after_mag_all**2, peak_indices, axis=1), axis=1)
+snr = peak_intensities / noise_intensities
+
+b2_rms = (2*np.pi)**2 * ((fc**2) + (B**2)/12)
+crlb = 1 / (2 * B * tp * snr * b2_rms)
+\end{verbatim}
+\small
+Notebook print: RMS bandwidth approximation $\beta_{\mathrm{rms}}^2 \approx 3.977\times 10^{11}$.
+\end{frame}
+
+\begin{frame}{2A: CRLB across channels}
+\fullfig{plot_07.png}
+\end{frame}
+
+\begin{frame}{2A: Interpretation}
+\begin{itemize}
+\item CRLB values are not identical for all channels.
+\item They remain in the same order of magnitude.
+\item Differences are expected due to finite samples and channel-dependent noise/reflector levels.
+\end{itemize}
+\end{frame}
+
+\section{3. Least Squares Estimation}
+
+\subsection{Exercise 3A}
+
+\begin{frame}{3A: LSE procedure}
+For pulse-compressed intensity $I[n]=|x_{pc}[n]|^2$ in the first 1600 samples:
+\begin{enumerate}
+\item Upsample with factor 4 or 8.
+\item Locate dominant peak index.
+\item Keep samples around peak above half-power threshold.
+\item Form $y=\ln(I)$.
+\item Build observation matrix $H=[\mathbf{1},\;t,\;t^2]$.
+\item Solve LS for $\ln(I(t))\approx a+bt+ct^2$ and get fine delay from vertex.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{3A: LS model and fine-delay formula}
+\scriptsize
+\begin{verbatim}
+y = np.log(upsampled_intensities[ch, selected_indices])
+t_selected = selected_indices * dt
+H = np.column_stack([np.ones(len(t_selected)), t_selected, t_selected**2])
+a_hat, b_hat, c_hat = np.linalg.lstsq(H, y, rcond=None)[0]
+t_peak = -b_hat / (2 * c_hat)
+\end{verbatim}
+\normalsize
+Model:
+\[
+\ln I(t) = a + bt + ct^2, \qquad \hat\tau_{\mathrm{LSE}} = -\frac{\hat b}{2\hat c}.
+\]
+\end{frame}
+
+\begin{frame}{3A: Original vs upsampled intensity around peak, channel 16}
+\fullfig{plot_08.png}
+\end{frame}
+
+\begin{frame}{3A: Log-intensity and quadratic fit}
+\fullfig{plot_09.png}
+\end{frame}
+
+\subsection{Exercise 3B}
+
+\begin{frame}{3B: Delay estimates across channels, ML vs LSE}
+\fullfig{plot_10.png}
+\end{frame}
+
+\begin{frame}{3B: Difference between LSE and upsampled ML}
+\fullfig{plot_11.png}
+\end{frame}
+
+\begin{frame}{3B: Discussion}
+\begin{itemize}
+\item Delays are close across channels, but not exactly identical.
+\item LSE gives smoother sub-sample continuous estimates.
+\item ML argmax is constrained to the sample grid after optional upsampling.
+\item LSE and ML track the same reflector, with small residual differences due to noise and local pulse-shape variation.
+\end{itemize}
+\end{frame}
+
+\section*{Summary}
+
+\begin{frame}{Summary}
+\begin{itemize}
+\item Exercise 1A--1D: Derived and implemented ML delay estimation via matched filtering; validated peak consistency across channels and upsampling factors.
+\item Exercise 2A: Computed CRLB per channel from estimated SNR; bounds are similar but channel-dependent.
+\item Exercise 3A--3B: Implemented LSE fine delay from log-intensity quadratic fit; obtained sub-sample delay refinement and compared against ML.
+\item All figures in this deck are exported directly from executed \texttt{project\_2.ipynb} outputs.
+\end{itemize}
+\end{frame}
+
+\end{document}
