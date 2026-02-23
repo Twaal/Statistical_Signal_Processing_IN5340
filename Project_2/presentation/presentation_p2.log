@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2026.2.5)  23 FEB 2026 12:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2026.2.5)  23 FEB 2026 12:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1265,7 +1265,7 @@ L3 programming layer <2025-07-20>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `presentation_p2.out' has not changed.
-(rerunfilecheck)             Checksum: D5E578E86C4B496D70A540E8878A579D;1578.
+(rerunfilecheck)             Checksum: 359B2ECF81EE44ABAE6E258317A3659F;1575.
  ) 
 Here is how much of TeX's memory you used:
  23020 strings out of 468134
@@ -1303,9 +1303,9 @@ fb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
 /cmsy7.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmsy9.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/pu
 blic/amsfonts/symbols/msbm10.pfb>
-Output written on presentation_p2.pdf (26 pages, 2195100 bytes).
+Output written on presentation_p2.pdf (26 pages, 2194852 bytes).
 PDF statistics:
- 1275 PDF objects out of 1440 (max. 8388607)
+ 1274 PDF objects out of 1440 (max. 8388607)
  65 named destinations out of 1000 (max. 500000)
  236 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -4,7 +4,7 @@
 \beamer@subsectionintoc {2}{2}{Exercise 1B}{6}{0}{2}
 \beamer@subsectionintoc {2}{3}{Exercise 1C}{9}{0}{2}
 \beamer@subsectionintoc {2}{4}{Exercise 1D}{12}{0}{2}
-\beamer@sectionintoc {3}{2. Cram\'er--Rao Lower Bound}{16}{0}{3}
+\beamer@sectionintoc {3}{2. Cram\'er-Rao Lower Bound}{16}{0}{3}
 \beamer@subsectionintoc {3}{1}{Exercise 2A}{16}{0}{3}
 \beamer@sectionintoc {4}{3. Least Squares Estimation}{19}{0}{4}
 \beamer@subsectionintoc {4}{1}{Exercise 3A}{19}{0}{4}
