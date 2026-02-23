@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2026.2.5)  23 FEB 2026 00:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2026.2.5)  23 FEB 2026 12:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1270,7 +1270,7 @@ Package rerunfilecheck Info: File `presentation_p2.out' has not changed.
 Here is how much of TeX's memory you used:
  23020 strings out of 468134
  448270 string characters out of 5430741
- 818865 words of memory out of 5000000
+ 818867 words of memory out of 5000000
  51071 multiletter control sequences out of 15000+600000
  647382 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191

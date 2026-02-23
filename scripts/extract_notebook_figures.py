@@ -63,8 +63,13 @@ def extract_figures(project: int):
                     
                     img_bytes = base64.b64decode(b64)
                     filename = fig_dir / f'plot_{img_index:02d}.png'
-                    filename.write_bytes(img_bytes)
-                    print(f"  [OK] {filename.name}")
+                    
+                    # Check if file exists before writing (to log replacement)
+                    file_exists = filename.exists()
+                    filename.write_bytes(img_bytes)  # Overwrites if exists
+                    
+                    action = "Replaced" if file_exists else "Created"
+                    print(f"  [OK] {action} {filename.name}")
                     img_index += 1
         
         total = img_index - 1
