@@ -47,27 +47,115 @@ Code: \href{https://github.com/Twaal/Statistical_Signal_Processing_IN5340/tree/m
 
 \begin{frame}{Problem statement}
 \begin{itemize}
-\item TODO: Summarize the assignment goals.
-\item TODO: Mention methods and deliverables.
+\item Binary detection with additive Gaussian noise:
+\[
+H_0: x=n, \qquad H_1: x=\theta+n, \quad n\sim\mathcal{N}(0,\sigma^2)
+\]
+\item Use $\theta=5$ and $\sigma=5$ as baseline case.
+\item Design and evaluate:
+\begin{itemize}
+	\item CFAR detector for given $P_{FA}$
+	\item ROC curve (theoretical vs empirical)
+	\item Improvement using sample mean of $N$ measurements
+\end{itemize}
 \end{itemize}
 \end{frame}
 
 \section{Main results}
 
-\begin{frame}{Results}
-% Add figures as they are generated from project_3.ipynb:
-% \fullfig{plot_01.png}
-\centering
-{\Large Add figures from notebook and update slides.}
+\begin{frame}{b) Noise and signal+noise PDFs}
+\begin{columns}[T,onlytextwidth]
+\column{0.44\textwidth}
+\small
+\begin{itemize}
+\item Under $H_0$: $x\sim\mathcal{N}(0,\sigma^2)$
+\item Under $H_1$: $x\sim\mathcal{N}(\theta,\sigma^2)$
+\item For $\theta/\sigma=1$, distributions overlap strongly.
+\item Detection is possible, but not highly reliable in this regime.
+\end{itemize}
+\column{0.56\textwidth}
+\colfig{plot_01.png}
+\end{columns}
+\end{frame}
+
+\begin{frame}{c) CFAR detector with $P_{FA}=0.1$}
+\begin{columns}[T,onlytextwidth]
+\column{0.46\textwidth}
+\small
+\[
+x_c=\sigma Q^{-1}(P_{FA})=5\,Q^{-1}(0.1)\approx 6.41
+\]
+\[
+P_D=Q\!\left(\frac{x_c-\theta}{\sigma}\right)\approx 0.389
+\]
+\begin{itemize}
+\item Blue shaded area: false-alarm probability $P_{FA}$.
+\item Orange shaded area: detection probability $P_D$.
+\item Dashed red line: threshold $x_c$.
+\end{itemize}
+\column{0.54\textwidth}
+\colfig{plot_02.png}
+\end{columns}
+\end{frame}
+
+\begin{frame}{d) ROC: empirical vs theoretical}
+\begin{columns}[T,onlytextwidth]
+\column{0.42\textwidth}
+\small
+\begin{itemize}
+\item Data model:
+\[
+s\in\{0,\theta\},\; P(s=0)=P(s=\theta)=0.5,\; x=s+\sigma w
+\]
+\item Empirical ROC computed by threshold sweep on simulated data.
+\item Multiple realizations vary, but cluster around the theoretical ROC.
+\end{itemize}
+\column{0.58\textwidth}
+\colfig{plot_03.png}
+\end{columns}
+\end{frame}
+
+\begin{frame}{e) Multi-sample detector and minimum $N$}
+\small
+Using sample mean of $N$ measurements:
+\[
+\bar{x}|H_0\sim\mathcal{N}\!\left(0,\frac{\sigma^2}{N}\right),
+\qquad
+\bar{x}|H_1\sim\mathcal{N}\!\left(\theta,\frac{\sigma^2}{N}\right)
+\]
+For CFAR with requirements $P_{FA}=0.01$ and $P_D>0.9$:
+\[
+N \ge \left(\frac{\sigma}{\theta}\right)^2\!\left(Q^{-1}(P_{FA}) + Q^{-1}(1-P_D)\right)^2
+\]
+Numerically:
+\[
+N_{\min,\,\text{cont}}\approx 13.02 \quad\Rightarrow\quad N_{\min}=14
+\]
+At $N=14$: $x_c\approx 3.11$ and $P_D\approx 0.922$ (requirement satisfied).
+\end{frame}
+
+\begin{frame}{f) PDFs for improved detector ($N=14$)}
+\begin{columns}[T,onlytextwidth]
+\column{0.44\textwidth}
+\small
+\begin{itemize}
+\item Variance shrinks from $\sigma^2$ to $\sigma^2/N$.
+\item The two PDFs become better separated.
+\item This improves detection performance for fixed $P_{FA}$.
+\end{itemize}
+\column{0.56\textwidth}
+\colfig{plot_04.png}
+\end{columns}
 \end{frame}
 
 \section*{Summary}
 
 \begin{frame}{Summary}
 \begin{itemize}
-\item TODO: Key result 1
-\item TODO: Key result 2
-\item TODO: Key result 3
+\item For single measurement ($\theta=\sigma=5$), overlap is substantial and $P_D$ is modest at practical $P_{FA}$.
+\item CFAR with $P_{FA}=0.1$ gives threshold $x_c\approx 6.41$ and $P_D\approx 0.389$.
+\item ROC simulations agree with theoretical ROC, with expected realization-to-realization variation.
+\item Averaging multiple measurements improves separability; minimum requirement is met at $N=14$.
 \end{itemize}
 \end{frame}
 
