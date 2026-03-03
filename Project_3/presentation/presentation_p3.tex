@@ -148,14 +148,89 @@ At $N=14$: $x_c\approx 3.11$ and $P_D\approx 0.922$ (requirement satisfied).
 \end{columns}
 \end{frame}
 
+\begin{frame}{g) ROC for multiple measurements}
+\begin{columns}[T,onlytextwidth]
+\column{0.43\textwidth}
+\small
+\textbf{From stdout (single realization):}
+\begin{itemize}
+\item $M=1$: AUC$_{emp}=0.745$, AUC$_{th}=0.760$
+\item $M=2$: AUC$_{emp}=0.843$, AUC$_{th}=0.841$
+\item $M=3$: AUC$_{emp}=0.888$, AUC$_{th}=0.890$
+\item $M=7$: AUC$_{emp}=0.965$, AUC$_{th}=0.969$
+\item $M=14$: AUC$_{emp}=0.998$, AUC$_{th}=0.996$
+\end{itemize}
+\vspace{0.3em}
+ROC shifts toward top-left as $M$ increases.
+\column{0.57\textwidth}
+\colfig{plot_05.png}
+\end{columns}
+\end{frame}
+
+\begin{frame}{h) Imbalanced prior data ($\theta=5$, $\sigma=2.5$)}
+\begin{columns}[T,onlytextwidth]
+\column{0.43\textwidth}
+\small
+\textbf{From stdout:}
+\begin{itemize}
+\item Generated prevalence: $\pi_1=0.266$, $\pi_0=0.734$
+\item $d'=\theta/\sigma=2.000$
+\item AUC$_{emp}=0.918$, AUC$_{th}=0.921$
+\end{itemize}
+\vspace{0.3em}
+Empirical ROC still matches theory well.
+\column{0.57\textwidth}
+\colfig{plot_06.png}
+\end{columns}
+\end{frame}
+
+\begin{frame}{i) Known priors (MAP operating point)}
+\begin{columns}[T,onlytextwidth]
+\column{0.44\textwidth}
+\small
+\textbf{From stdout:}
+\begin{itemize}
+\item Equal-prior threshold: $x_t=2.500$
+\item MAP threshold: $x_t=3.769$
+\item Equal-prior point: $(P_{FA},P_D)=(0.159,0.841)$
+\item MAP point: $(P_{FA},P_D)=(0.066,0.689)$
+\end{itemize}
+\vspace{0.3em}
+Benefit of MAP: fewer false alarms when $H_1$ is rare.
+\column{0.56\textwidth}
+\colfig{plot_07.png}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Essential code snippets only}
+\footnotesize
+\textbf{1) Multi-measurement ROC model (g):}
+\begin{verbatim}
+d_prime_n = theta * np.sqrt(M) / sigma
+pd_theory = norm.sf(norm.isf(pfa_grid) - d_prime_n)
+\end{verbatim}
+\vspace{0.4em}
+\textbf{2) MAP score with known priors (i):}
+\begin{verbatim}
+llr = (theta/sigma**2)*x - theta**2/(2*sigma**2)
+score_map = llr + np.log(pi1/pi0)
+\end{verbatim}
+\vspace{0.4em}
+\textbf{3) MAP threshold in observation domain:}
+\[
+x_t^{MAP}=\frac{\theta}{2}+\frac{\sigma^2}{\theta}\log\frac{\pi_0}{\pi_1}
+\]
+\end{frame}
+
 \section*{Summary}
 
 \begin{frame}{Summary}
 \begin{itemize}
 \item For single measurement ($\theta=\sigma=5$), overlap is substantial and $P_D$ is modest at practical $P_{FA}$.
 \item CFAR with $P_{FA}=0.1$ gives threshold $x_c\approx 6.41$ and $P_D\approx 0.389$.
-\item ROC simulations agree with theoretical ROC, with expected realization-to-realization variation.
-\item Averaging multiple measurements improves separability; minimum requirement is met at $N=14$.
+\item ROC simulations agree with theory in all experiments (typical AUC match within a few hundredths).
+\item Averaging measurements strongly improves performance (AUC from $0.745$ at $M=1$ to $0.998$ at $M=14$).
+\item With imbalanced priors, MAP shifts operating point to reduce false alarms ($0.159\rightarrow0.066$) at the cost of lower $P_D$.
 \end{itemize}
 \end{frame}
 

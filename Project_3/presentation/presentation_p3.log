@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2026.2.5)  3 MAR 2026 12:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2026.2.5)  3 MAR 2026 17:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1114,7 +1114,7 @@ Package pdftex.def Info: figs/plot_03.png  used on input line 116.
 [7
 
 ]
-<figs/plot_04.png, id=271, 449.5194pt x 395.3169pt>
+<figs/plot_04.png, id=272, 449.5194pt x 395.3169pt>
 File: figs/plot_04.png Graphic file (type png)
 <use figs/plot_04.png>
 Package pdftex.def Info: figs/plot_04.png  used on input line 149.
@@ -1124,8 +1124,45 @@ Package pdftex.def Info: figs/plot_04.png  used on input line 149.
 [8
 
  <./figs/plot_04.png>]
+<figs/plot_05.png, id=301, 570.2103pt x 498.663pt>
+File: figs/plot_05.png Graphic file (type png)
+<use figs/plot_05.png>
+Package pdftex.def Info: figs/plot_05.png  used on input line 168.
+(pdftex.def)             Requested size: 162.3724pt x 141.99869pt.
+
 
 [9
+
+ <./figs/plot_05.png>]
+<figs/plot_06.png, id=331, 570.2103pt x 462.528pt>
+File: figs/plot_06.png Graphic file (type png)
+<use figs/plot_06.png>
+Package pdftex.def Info: figs/plot_06.png  used on input line 185.
+(pdftex.def)             Requested size: 175.05803pt x 141.9989pt.
+
+
+[10
+
+ <./figs/plot_06.png>]
+<figs/plot_07.png, id=360, 570.2103pt x 462.528pt>
+File: figs/plot_07.png Graphic file (type png)
+<use figs/plot_07.png>
+Package pdftex.def Info: figs/plot_07.png  used on input line 203.
+(pdftex.def)             Requested size: 175.05803pt x 141.9989pt.
+
+
+[11
+
+ <./figs/plot_07.png>]
+\openout4 = `presentation_p3.vrb'.
+
+ (presentation_p3.vrb)
+
+[12
+
+]
+
+[13
 
 ]
 \tf@nav=\write6
@@ -1146,43 +1183,46 @@ Package rerunfilecheck Info: File `presentation_p3.out' has not changed.
 (rerunfilecheck)             Checksum: C9B0914FE9C6F820EE1D925772BAE5A5;287.
  ) 
 Here is how much of TeX's memory you used:
- 22891 strings out of 468134
- 447080 string characters out of 5430741
+ 22947 strings out of 468134
+ 448144 string characters out of 5430741
  815844 words of memory out of 5000000
- 50997 multiletter control sequences out of 15000+600000
- 644885 words of font info for 91 fonts, out of 8000000 for 9000
+ 51040 multiletter control sequences out of 15000+600000
+ 646426 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,15n,123p,392b,669s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss
-0600.pk> <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
-0\ecss0900.pk> <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
-/dpi600\ecss0500.pk> <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
-pen/ec/dpi600\ectt0800.pk> <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/ljfour
-/jknappen/ec/dpi600\ecss0800.pk> <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/
-ljfour/jknappen/ec/dpi600\ecss0700.pk> <C:\Users\theod\AppData\Local\MiKTeX\fon
-ts/pk/ljfour/jknappen/ec/dpi600\ecss1000.pk> <C:\Users\theod\AppData\Local\MiKT
-eX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss1440.pk><C:/Users/theod/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex9.pfb><C:/Users/theod/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Use
-rs/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pf
-b><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmmi6.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmmi9.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmss10.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/
-type1/public/amsfonts/cm/cmss12.pfb><C:/Users/theod/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Users/theod/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmss9.pfb><C:/Users/theod/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Users/theod/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi12.pfb><C:/Use
-rs/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi8.pf
-b><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmssi9.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmsy10.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmsy6.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmsy9.pfb>
-Output written on presentation_p3.pdf (9 pages, 438893 bytes).
+ 128i,15n,123p,392b,681s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecsx
+0800.pk> <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
+0\ecsx0900.pk> <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
+/dpi600\ecss0600.pk> <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
+pen/ec/dpi600\ecss0900.pk> <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/ljfour
+/jknappen/ec/dpi600\ecss0500.pk> <C:\Users\theod\AppData\Local\MiKTeX\fonts/pk/
+ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\theod\AppData\Local\MiKTeX\fon
+ts/pk/ljfour/jknappen/ec/dpi600\ecss0800.pk> <C:\Users\theod\AppData\Local\MiKT
+eX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss0700.pk> <C:\Users\theod\AppData\Loca
+l\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss1000.pk> <C:\Users\theod\AppDat
+a\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss1440.pk><C:/Users/theod/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex9.pfb><C:/
+Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10
+.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmmi12.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmmi6.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmmi8.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/theod/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Users/theod/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Users/theod/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Users/theod
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss9.pfb><C:/Use
+rs/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi10.p
+fb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
+/cmssi12.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmssi8.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmssi9.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fo
+nts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/theod/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/theod/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
+Output written on presentation_p3.pdf (13 pages, 657368 bytes).
 PDF statistics:
- 672 PDF objects out of 1000 (max. 8388607)
- 22 named destinations out of 1000 (max. 500000)
- 141 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 874 PDF objects out of 1000 (max. 8388607)
+ 30 named destinations out of 1000 (max. 500000)
+ 156 words of extra memory for PDF output out of 10000 (max. 10000000)
 
