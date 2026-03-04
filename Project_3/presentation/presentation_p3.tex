@@ -98,7 +98,7 @@ P_D=Q\!\left(\frac{x_c-\theta}{\sigma}\right)\approx 0.389
 \end{columns}
 \end{frame}
 
-\begin{frame}{d) ROC: empirical vs theoretical}
+\begin{frame}{d) ROC empirical and theoretical}
 \begin{columns}[T,onlytextwidth]
 \column{0.42\textwidth}
 \small
@@ -115,7 +115,7 @@ s\in\{0,\theta\},\; P(s=0)=P(s=\theta)=0.5,\; x=s+\sigma w
 \end{columns}
 \end{frame}
 
-\begin{frame}{e) Multi-sample detector and minimum $N$}
+\begin{frame}{e) Multi-sample detector, minimum $N$}
 \small
 Using sample mean of $N$ measurements:
 \[
@@ -134,14 +134,14 @@ N_{\min,\,\text{cont}}\approx 13.02 \quad\Rightarrow\quad N_{\min}=14
 At $N=14$: $x_c\approx 3.11$ and $P_D\approx 0.922$.
 \end{frame}
 
-\begin{frame}{f) PDFs for improved detector ($N=14$)}
+\begin{frame}{f) Improved detector, $N=14$}
 \begin{columns}[T,onlytextwidth]
 \column{0.44\textwidth}
 \small
 \begin{itemize}
 \item Variance shrinks from $\sigma^2$ to $\sigma^2/N$.
 \item The two PDFs become better separated.
-\item This improves detection performance for fixed $P_{FA}$.
+\item This gives better detection performance for the same $P_{FA}$.
 \end{itemize}
 \column{0.56\textwidth}
 \colfig{plot_04.png}
@@ -152,7 +152,7 @@ At $N=14$: $x_c\approx 3.11$ and $P_D\approx 0.922$.
 \begin{columns}[T,onlytextwidth]
 \column{0.43\textwidth}
 \small
-\textbf{From stdout (single realization):}
+\textbf{From stdout, single realization:}
 \begin{itemize}
 \item $M=1$: AUC$_{emp}=0.745$, AUC$_{th}=0.760$
 \item $M=2$: AUC$_{emp}=0.843$, AUC$_{th}=0.841$
@@ -167,7 +167,7 @@ ROC shifts toward top-left as $M$ increases.
 \end{columns}
 \end{frame}
 
-\begin{frame}{h) Imbalanced prior data ($\theta=5$, $\sigma=2.5$)}
+\begin{frame}{h) Imbalanced priors, $\theta=5$, $\sigma=2.5$}
 \begin{columns}[T,onlytextwidth]
 \column{0.43\textwidth}
 \small
@@ -178,25 +178,25 @@ ROC shifts toward top-left as $M$ increases.
 \item AUC$_{emp}=0.918$, AUC$_{th}=0.921$
 \end{itemize}
 \vspace{0.3em}
-Empirical ROC still matches theory well.
+The empirical ROC still matches theory well.
 \column{0.57\textwidth}
 \colfig{plot_06.png}
 \end{columns}
 \end{frame}
 
-\begin{frame}{i) Known priors (MAP operating point)}
+\begin{frame}{i) Known priors, MAP operating point}
 \begin{columns}[T,onlytextwidth]
 \column{0.44\textwidth}
 \small
 \textbf{From stdout:}
 \begin{itemize}
-\item ML threshold: $x_t=2.500$
-\item MAP threshold: $x_t=3.968$
+\item ML threshold: $y_t=2.500$
+\item MAP threshold: $y_t=3.968$
 \item ML point: $(P_{FA},P_D)=(0.159,0.841)$
 \item MAP point: $(P_{FA},P_D)=(0.056,0.660)$
 \end{itemize}
 \vspace{0.3em}
-Benefit of MAP: fewer false alarms when $H_1$ is rare.
+MAP reduces false alarms when $H_1$ is rare.
 \column{0.56\textwidth}
 \colfig{plot_07.png}
 \end{columns}
@@ -208,9 +208,9 @@ Benefit of MAP: fewer false alarms when $H_1$ is rare.
 \small
 \textbf{Interpretation:}
 \begin{itemize}
-\item ML ignores class priors and uses midpoint threshold.
+\item ML ignores class priors and uses the midpoint threshold.
 \item MAP accounts for rare $H_1$ and shifts threshold right.
-\item Shift reduces false alarms, but also lowers detection probability.
+\item This shift reduces false alarms, but it also lowers detection probability.
 \end{itemize}
 \[
 x_t^{ML}=\frac{\theta}{2},\qquad
@@ -221,9 +221,12 @@ x_t^{MAP}=\frac{\theta}{2}+\frac{\sigma^2}{\theta}\log\frac{P_0}{P_1}
 \end{columns}
 \end{frame}
 
-\begin{frame}{MAP derivation from likelihoods}
+\begin{frame}{i) MAP derivation from likelihoods}
 \small
-For Gaussian shift model ($y|H_0\sim\mathcal N(0,\sigma^2)$, $y|H_1\sim\mathcal N(\theta,\sigma^2)$):
+For the Gaussian shift model:
+\[
+y|H_0\sim\mathcal N(0,\sigma^2),\qquad y|H_1\sim\mathcal N(\theta,\sigma^2)
+\]
 \[
 f_0(y)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{y^2}{2\sigma^2}},
 \qquad
@@ -235,7 +238,7 @@ f_1(y)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(y-\theta)^2}{2\sigma^2}}
 =\frac{\theta}{\sigma^2}y-\frac{\theta^2}{2\sigma^2}
 \]
 \vspace{0.3em}
-MAP rule (equal costs):
+MAP rule with equal costs:
 \[
 \Pr(H_1\mid y)\underset{H_0}{\overset{H_1}{\gtrless}}\Pr(H_0\mid y)
 \]
@@ -249,7 +252,7 @@ y_t^{MAP}=\frac{\theta}{2}+\frac{\sigma^2}{\theta}\log\frac{P_0}{P_1}
 \]
 \end{frame}
 
-\begin{frame}{How priors change the detector}
+\begin{frame}{i) Priors, MAP, and ML}
 \small
 \begin{itemize}
 \item Priors enter only through the term $\log(P_0/P_1)$ in the MAP threshold.
@@ -262,10 +265,10 @@ y_t^{MAP}=\frac{\theta}{2}+\frac{\sigma^2}{\theta}\log\frac{P_0}{P_1}
 P_0=P_1\Rightarrow\log\frac{P_0}{P_1}=0
 \Rightarrow y_t^{MAP}=\frac{\theta}{2}=y_t^{ML}
 \]
-So ML corresponds to assuming equal priors; MAP generalizes this when prior probabilities are known.
+ML assumes equal priors. MAP extends the same rule when prior probabilities are known.
 \end{frame}
 
-\begin{frame}[fragile]{Code snippets}
+\begin{frame}[fragile]{Code snippets, essential parts}
 \footnotesize
 \textbf{1) Multi-measurement ROC model (g):}
 \begin{verbatim}
@@ -289,11 +292,11 @@ y_t^{MAP}=\frac{\theta}{2}+\frac{\sigma^2}{\theta}\log\frac{P_0}{P_1}
 
 \begin{frame}{Summary}
 \begin{itemize}
-\item For single measurement ($\theta=\sigma=5$), overlap is substantial and $P_D$ is modest at practical $P_{FA}$.
+\item For a single measurement with $\theta=\sigma=5$, overlap is substantial and $P_D$ is modest at practical $P_{FA}$.
 \item CFAR with $P_{FA}=0.1$ gives threshold $x_c\approx 6.41$ and $P_D\approx 0.389$.
-\item ROC simulations agree with theory in all experiments (typical AUC match within a few hundredths).
-\item Averaging measurements strongly improves performance (AUC from $0.745$ at $M=1$ to $0.998$ at $M=14$).
-\item With imbalanced priors, MAP shifts operating point to reduce false alarms ($0.159\rightarrow0.066$) at the cost of lower $P_D$.
+\item ROC simulations agree with theory in all experiments, with AUC differences of only a few hundredths.
+\item Averaging measurements strongly improves performance, from AUC $0.745$ at $M=1$ to $0.998$ at $M=14$.
+\item With imbalanced priors, MAP shifts the operating point to reduce false alarms from $0.159$ to $0.066$, with lower $P_D$.
 \end{itemize}
 \end{frame}
 
