@@ -131,7 +131,7 @@ Numerically:
 \[
 N_{\min,\,\text{cont}}\approx 13.02 \quad\Rightarrow\quad N_{\min}=14
 \]
-At $N=14$: $x_c\approx 3.11$ and $P_D\approx 0.922$ (requirement satisfied).
+At $N=14$: $x_c\approx 3.11$ and $P_D\approx 0.922$.
 \end{frame}
 
 \begin{frame}{f) PDFs for improved detector ($N=14$)}
@@ -190,10 +190,10 @@ Empirical ROC still matches theory well.
 \small
 \textbf{From stdout:}
 \begin{itemize}
-\item Equal-prior threshold: $x_t=2.500$
-\item MAP threshold: $x_t=3.769$
-\item Equal-prior point: $(P_{FA},P_D)=(0.159,0.841)$
-\item MAP point: $(P_{FA},P_D)=(0.066,0.689)$
+\item ML threshold: $x_t=2.500$
+\item MAP threshold: $x_t=3.968$
+\item ML point: $(P_{FA},P_D)=(0.159,0.841)$
+\item MAP point: $(P_{FA},P_D)=(0.056,0.660)$
 \end{itemize}
 \vspace{0.3em}
 Benefit of MAP: fewer false alarms when $H_1$ is rare.
@@ -202,7 +202,26 @@ Benefit of MAP: fewer false alarms when $H_1$ is rare.
 \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]{Essential code snippets only}
+\begin{frame}{i) PDFs with ML and MAP thresholds}
+\begin{columns}[T,onlytextwidth]
+\column{0.40\textwidth}
+\small
+\textbf{Interpretation:}
+\begin{itemize}
+\item ML ignores class priors and uses midpoint threshold.
+\item MAP accounts for rare $H_1$ and shifts threshold right.
+\item Shift reduces false alarms, but also lowers detection probability.
+\end{itemize}
+\[
+x_t^{ML}=\frac{\theta}{2},\qquad
+x_t^{MAP}=\frac{\theta}{2}+\frac{\sigma^2}{\theta}\log\frac{\pi_0}{\pi_1}
+\]
+\column{0.60\textwidth}
+\colfig{plot_i_thresholds.png}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Code snippets}
 \footnotesize
 \textbf{1) Multi-measurement ROC model (g):}
 \begin{verbatim}
