@@ -8,11 +8,11 @@ pd_theory = norm.sf(norm.isf(pfa_grid) - d_prime_n)
 \vspace{0.4em}
 \textbf{2) MAP score with known priors (i):}
 \begin{verbatim}
-llr = (theta/sigma**2)*x - theta**2/(2*sigma**2)
-score_map = llr + np.log(pi1/pi0)
+llr = (theta/sigma**2)*y - theta**2/(2*sigma**2)
+score_map = llr + np.log(P1/P0)
 \end{verbatim}
 \vspace{0.4em}
 \textbf{3) MAP threshold in observation domain:}
 \[
-x_t^{MAP}=\frac{\theta}{2}+\frac{\sigma^2}{\theta}\log\frac{\pi_0}{\pi_1}
+y_t^{MAP}=\frac{\theta}{2}+\frac{\sigma^2}{\theta}\log\frac{P_0}{P_1}
 \]

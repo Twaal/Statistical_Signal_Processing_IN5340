@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2026.2.5)  4 MAR 2026 13:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2026.2.5)  4 MAR 2026 13:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1164,15 +1164,23 @@ Package pdftex.def Info: figs/plot_i_thresholds.png  used on input line 222.
 [12
 
  <./figs/plot_i_thresholds.png>]
-\openout4 = `presentation_p3.vrb'.
-
- (presentation_p3.vrb)
 
 [13
 
 ]
 
 [14
+
+]
+\openout4 = `presentation_p3.vrb'.
+
+ (presentation_p3.vrb)
+
+[15
+
+]
+
+[16
 
 ]
 \tf@nav=\write6
@@ -1193,10 +1201,10 @@ Package rerunfilecheck Info: File `presentation_p3.out' has not changed.
 (rerunfilecheck)             Checksum: C9B0914FE9C6F820EE1D925772BAE5A5;287.
  ) 
 Here is how much of TeX's memory you used:
- 22960 strings out of 468134
- 448463 string characters out of 5430741
- 815844 words of memory out of 5000000
- 51051 multiletter control sequences out of 15000+600000
+ 22968 strings out of 468134
+ 448533 string characters out of 5430741
+ 818844 words of memory out of 5000000
+ 51055 multiletter control sequences out of 15000+600000
  646426 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,15n,123p,392b,681s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1215,24 +1223,28 @@ ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex9.pfb><C:/
 Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10
 .pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
 cm/cmmi12.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-amsfonts/cm/cmmi6.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmmi8.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/theod/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Users/theod/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Users/theod/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Users/theod
-/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss9.pfb><C:/Use
-rs/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi10.p
-fb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmssi12.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
-msfonts/cm/cmssi8.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmssi9.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/theod/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/theod/AppData/Local/P
-rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
-Output written on presentation_p3.pdf (14 pages, 734339 bytes).
+amsfonts/cm/cmmi5.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmmi6.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/theod/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/theod/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Users/theod/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Users/theod
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Use
+rs/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss9.pfb
+><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mssi10.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmssi12.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmssi8.pfb><C:/Users/theod/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmssi9.pfb><C:/Users/theod/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/theod/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/theod/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/theod
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Use
+rs/theod/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam
+10.pfb>
+Output written on presentation_p3.pdf (16 pages, 777309 bytes).
 PDF statistics:
- 908 PDF objects out of 1000 (max. 8388607)
- 32 named destinations out of 1000 (max. 500000)
+ 986 PDF objects out of 1000 (max. 8388607)
+ 36 named destinations out of 1000 (max. 500000)
  161 words of extra memory for PDF output out of 10000 (max. 10000000)
 

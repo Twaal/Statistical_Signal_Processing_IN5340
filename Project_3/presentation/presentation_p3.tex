@@ -214,11 +214,55 @@ Benefit of MAP: fewer false alarms when $H_1$ is rare.
 \end{itemize}
 \[
 x_t^{ML}=\frac{\theta}{2},\qquad
-x_t^{MAP}=\frac{\theta}{2}+\frac{\sigma^2}{\theta}\log\frac{\pi_0}{\pi_1}
+x_t^{MAP}=\frac{\theta}{2}+\frac{\sigma^2}{\theta}\log\frac{P_0}{P_1}
 \]
 \column{0.60\textwidth}
 \colfig{plot_i_thresholds.png}
 \end{columns}
+\end{frame}
+
+\begin{frame}{MAP derivation from likelihoods}
+\small
+For Gaussian shift model ($y|H_0\sim\mathcal N(0,\sigma^2)$, $y|H_1\sim\mathcal N(\theta,\sigma^2)$):
+\[
+f_0(y)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{y^2}{2\sigma^2}},
+\qquad
+f_1(y)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(y-\theta)^2}{2\sigma^2}}
+\]
+\[
+\log\frac{f_1(y)}{f_0(y)}
+=-\frac{(y-\theta)^2}{2\sigma^2}+\frac{y^2}{2\sigma^2}
+=\frac{\theta}{\sigma^2}y-\frac{\theta^2}{2\sigma^2}
+\]
+\vspace{0.3em}
+MAP rule (equal costs):
+\[
+\Pr(H_1\mid y)\underset{H_0}{\overset{H_1}{\gtrless}}\Pr(H_0\mid y)
+\]
+\[
+\frac{f_1(y)}{f_0(y)}\underset{H_0}{\overset{H_1}{\gtrless}}\frac{\Pr(H_0)}{\Pr(H_1)}=\frac{P_0}{P_1}
+\]
+\[
+\Rightarrow\quad
+y\underset{H_0}{\overset{H_1}{\gtrless}}
+y_t^{MAP}=\frac{\theta}{2}+\frac{\sigma^2}{\theta}\log\frac{P_0}{P_1}
+\]
+\end{frame}
+
+\begin{frame}{How priors change the detector}
+\small
+\begin{itemize}
+\item Priors enter only through the term $\log(P_0/P_1)$ in the MAP threshold.
+\item If $H_1$ is rare ($P_1<P_0$), then $\log(P_0/P_1)>0$ and threshold increases.
+\item Higher threshold means fewer false alarms, but also fewer detections.
+\end{itemize}
+\vspace{0.4em}
+\textbf{ML is a special case of MAP:}
+\[
+P_0=P_1\Rightarrow\log\frac{P_0}{P_1}=0
+\Rightarrow y_t^{MAP}=\frac{\theta}{2}=y_t^{ML}
+\]
+So ML corresponds to assuming equal priors; MAP generalizes this when prior probabilities are known.
 \end{frame}
 
 \begin{frame}[fragile]{Code snippets}
@@ -231,13 +275,13 @@ pd_theory = norm.sf(norm.isf(pfa_grid) - d_prime_n)
 \vspace{0.4em}
 \textbf{2) MAP score with known priors (i):}
 \begin{verbatim}
-llr = (theta/sigma**2)*x - theta**2/(2*sigma**2)
-score_map = llr + np.log(pi1/pi0)
+llr = (theta/sigma**2)*y - theta**2/(2*sigma**2)
+score_map = llr + np.log(P1/P0)
 \end{verbatim}
 \vspace{0.4em}
 \textbf{3) MAP threshold in observation domain:}
 \[
-x_t^{MAP}=\frac{\theta}{2}+\frac{\sigma^2}{\theta}\log\frac{\pi_0}{\pi_1}
+y_t^{MAP}=\frac{\theta}{2}+\frac{\sigma^2}{\theta}\log\frac{P_0}{P_1}
 \]
 \end{frame}
 
