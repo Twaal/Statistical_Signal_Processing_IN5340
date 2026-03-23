@@ -1,0 +1,19 @@
+\frametitle{2A: STFT implementation}
+\scriptsize
+\begin{verbatim}
+for idx, Ls in enumerate(seg_lengths):      # L = 64, 128, 256, 512
+    Ds = Ls // 2
+    Nfft = Ls * zp                          # zero-pad x4
+    w = np.hanning(Ls);  Uw = np.mean(w**2)
+
+    nseg = (N_2a - Ls) // Ds + 1
+    stft = np.zeros((Nfft, nseg))
+    for i in range(nseg):
+        s = i * Ds
+        seg = ch14_long[s:s+Ls] * w
+        padded = np.zeros(Nfft, dtype=complex)
+        padded[:Ls] = seg
+        stft[:, i] = (1/(Ls*fs*Uw)) * np.abs(np.fft.fft(padded))**2
+
+    stft_dB = 10*np.log10(np.fft.fftshift(stft, axes=0) + 1e-30)
+\end{verbatim}

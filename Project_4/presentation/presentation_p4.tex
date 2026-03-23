@@ -1,0 +1,350 @@
+% IN5340/IN9340 Project IV Presentation
+% Build (from this folder): pdflatex -interaction=nonstopmode -halt-on-error presentation_p4.tex
+
+\documentclass[aspectratio=169,10pt]{beamer}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{mathtools}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+
+\graphicspath{{figs/}}
+
+\newcommand{\fullfig}[2][]{%
+\centering
+\includegraphics[width=\linewidth,height=0.78\textheight,keepaspectratio,#1]{#2}%
+}
+\newcommand{\colfig}[2][]{%
+\includegraphics[width=\linewidth,height=0.58\textheight,keepaspectratio,#1]{#2}%
+}
+
+\title[IN5340 Project IV]{IN5340/IN9340 Project IV: Spectral Estimation}
+\author{Theodor W\aa lberg}
+\institute{University of Oslo}
+\date{March 2026}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\vspace{-1.0em}
+\centering
+\footnotesize
+Code: \href{https://github.com/Twaal/Statistical_Signal_Processing_IN5340/tree/master/Project_4}{\nolinkurl{github.com/Twaal/Statistical_Signal_Processing_IN5340/tree/master/Project_4}}
+\end{frame}
+
+\begin{frame}{Agenda}
+\tableofcontents
+\end{frame}
+
+% =============================================================================
+\section{Introduction}
+% =============================================================================
+
+\begin{frame}{Problem statement}
+\begin{itemize}
+\item Sonar data from HUGIN AUV: $N_h=32$ hydrophones, single ping.
+\item Data matrix $\mathbf{X}\in\mathbb{C}^{N_t\times 32}$, sampling frequency $f_s=40\,$kHz.
+\item Transmitted signal: LFM pulse, bandwidth $B=30\,$kHz, centre frequency $f_c=100\,$kHz.
+\[
+s_{Tx}(t) = \exp\!\bigl(j2\pi\alpha t^2/2\bigr),\quad |t|\le T_p/2, \qquad \alpha = B/T_p
+\]
+\item Received data are basebanded (carrier removed).
+\item Goal: estimate and compare power spectral densities using periodogram, modified periodogram, Welch, and multitaper methods; analyse spectrograms.
+\end{itemize}
+\end{frame}
+
+% =============================================================================
+\section{Exercise 1A - Spectral Estimation (Channel 14)}
+% =============================================================================
+
+\begin{frame}[fragile]{1A: Periodogram and modified periodogram}
+\scriptsize
+\begin{verbatim}
+# periodogram
+fft_result = np.fft.fft(channel_14_data)
+periodogram = (1/(N*fs)) * np.abs(fft_result)**2
+periodogram_shifted = np.fft.fftshift(periodogram)
+
+# modified periodogram with Hanning window
+win = np.hanning(N)
+U = np.mean(win**2)
+windowed = channel_14_data * win
+fft_win = np.fft.fft(windowed)
+periodogram_windowed = (1/(N*fs*U)) * np.abs(fft_win)**2
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{1A: Welch method and multitaper}
+\scriptsize
+\begin{verbatim}
+# Welch (L=256, D=128, Hanning)
+welch_psd = np.zeros(L)
+for i in range(num_segments):
+    start = i*(L - D)
+    seg = channel_14_data[start:start+L] * welch_win
+    welch_psd += (1/(L*fs*U_welch)) * np.abs(np.fft.fft(seg))**2
+welch_psd /= num_segments
+
+# Multitaper (NW=4, K=7, DPSS tapers)
+tapers, eigenvalues = windows.dpss(N, NW, K, return_ratios=True)
+multitaper_psd = np.zeros(N)
+for k in range(K):
+    multitaper_psd += (1/fs) * np.abs(np.fft.fft(channel_14_data * tapers[k]))**2
+multitaper_psd /= K
+\end{verbatim}
+\end{frame}
+
+\begin{frame}{1A: Comparison of spectral estimates}
+\begin{columns}[T,onlytextwidth]
+\column{0.42\textwidth}
+\small
+\begin{itemize}
+\item Channel 14, $M=1200$, $N=1024$.
+\item Four estimators plotted: periodogram, modified (Hanning), Welch ($L=256$, $D=128$), multitaper ($NW=4$, $K=7$).
+\item The LFM passband ($\pm15\,$kHz) is visible in all estimates.
+\item Periodogram shows the most variance; Welch and multitaper are smoother.
+\end{itemize}
+\column{0.58\textwidth}
+\colfig{plot_06.png}
+\end{columns}
+\end{frame}
+
+\begin{frame}{1A: Bias and variance analysis}
+\small
+\textbf{Does bias reduction help?}\\
+The boxcar periodogram is theoretically unbiased only for infinite data. With finite $N=1024$, spectral leakage introduces bias. All methods show negative mean bias in the passband:
+\vspace{0.3em}
+
+\begin{tabular}{lr}
+\toprule
+Method & Mean Bias (dB) \\
+\midrule
+Periodogram & $-3.86$ \\
+Modified (Hanning) & $-3.35$ \\
+Welch ($L\!=\!256$) & $-1.57$ \\
+Multitaper ($K\!=\!7$) & $-1.43$ \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.5em}
+\textbf{Does variance reduction help?}\\
+\begin{tabular}{lr}
+\toprule
+Method & Mean Variance \\
+\midrule
+Periodogram & $9.19$ \\
+Modified (Hanning) & $11.17$ \\
+Welch ($L\!=\!256$) & $0.81$ \\
+Multitaper ($K\!=\!7$) & $0.75$ \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.3em}
+Welch and multitaper reduce variance by $>10\times$, giving a much more reliable estimate.
+\end{frame}
+
+\begin{frame}{1A: Estimators vs ideal LFM spectrum}
+\fullfig{plot_07.png}
+\end{frame}
+
+\begin{frame}{1A: Bandwidth estimation and spectrum issues}
+\small
+\textbf{Bandwidth estimation} (multitaper, $-6\,$dB from passband level):
+\begin{itemize}
+\item Passband level: $3.45\,$dB
+\item $-6\,$dB threshold: $-2.55\,$dB
+\item Estimated edges: $-17.58\,$kHz to $14.53\,$kHz
+\item \textbf{Estimated BW: $32.11\,$kHz} (ideal: $30\,$kHz)
+\end{itemize}
+
+\vspace{0.5em}
+\textbf{What is wrong with the spectrum?}
+\begin{itemize}
+\item Spectral leakage widens the apparent passband beyond the true $30\,$kHz.
+\item An interfering tone near $-17\,$kHz occupies the lower band and skews the bandwidth estimate upward.
+\end{itemize}
+\end{frame}
+
+% =============================================================================
+\section{Exercise 1B - Spectral Estimation (Channel 9)}
+% =============================================================================
+
+\begin{frame}{1B: Comparison of spectral estimates}
+\begin{columns}[T,onlytextwidth]
+\column{0.40\textwidth}
+\small
+\begin{itemize}
+\item Channel 9, $M=7000$, $N=2048$.
+\item Signal dominated by additive noise and narrowband interference from "tonal lines".
+\item Periodogram resolves closely spaced tones near $16$-$17\,$kHz that merge in Welch/multitaper.
+\end{itemize}
+\column{0.60\textwidth}
+\colfig{plot_12.png}
+\end{columns}
+\end{frame}
+
+\begin{frame}{1B: Discussion}
+\small
+\textbf{1. Does bias reduction help?}\\
+No. The signal is dominated by narrowband tones in noise, not a wideband LFM pulse. There is no well-defined passband where spectral leakage matters, so bias reduction provides no practical benefit.
+
+\vspace{0.5em}
+\textbf{2. Does variance reduction help?}\\
+Variance reduction is counterproductive here. At $16$-$17\,$kHz two closely spaced tones are distinguishable in the high-variance periodogram but merge in the smoothed Welch estimate.
+
+\vspace{0.5em}
+\textbf{3. Consequence of variance reduction?}\\
+A bias-variance-resolution tradeoff: smoothing reduces variance but also reduces frequency resolution. The Welch method with $L=256$ gives $\Delta f = f_s/L \approx 156\,$Hz, which is too coarse to separate nearby tones.
+\end{frame}
+
+% =============================================================================
+\section{Exercise 2A - Spectrogram Analysis (Channel 14)}
+% =============================================================================
+
+\begin{frame}{2A: Timeseries - Channel 14}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\small
+\begin{itemize}
+\item Channel 14, $M=400$, $N=8192$.
+\item Several distinct events with varying amplitude and duration in additive noise.
+\item Not WSS over the full window motivates time-frequency analysis.
+\end{itemize}
+\column{0.62\textwidth}
+\colfig{plot_13.png}
+\end{columns}
+\end{frame}
+
+\begin{frame}{2A: Welch PSD - Channel 14}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\small
+\begin{itemize}
+\item Welch with $L=512$, $D=256$, Hanning.
+\item Several tonal clusters visible.
+\item Original LFM passband present but tones dominate.
+\item The global PSD hides the time-varying nature of these events.
+\end{itemize}
+\column{0.62\textwidth}
+\colfig{plot_14.png}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{2A: STFT implementation}
+\scriptsize
+\begin{verbatim}
+for idx, Ls in enumerate(seg_lengths):      # L = 64, 128, 256, 512
+    Ds = Ls // 2
+    Nfft = Ls * zp                          # zero-pad x4
+    w = np.hanning(Ls);  Uw = np.mean(w**2)
+
+    nseg = (N_2a - Ls) // Ds + 1
+    stft = np.zeros((Nfft, nseg))
+    for i in range(nseg):
+        s = i * Ds
+        seg = ch14_long[s:s+Ls] * w
+        padded = np.zeros(Nfft, dtype=complex)
+        padded[:Ls] = seg
+        stft[:, i] = (1/(Ls*fs*Uw)) * np.abs(np.fft.fft(padded))**2
+
+    stft_dB = 10*np.log10(np.fft.fftshift(stft, axes=0) + 1e-30)
+\end{verbatim}
+\end{frame}
+
+\begin{frame}{2A: STFT - four segment lengths}
+\fullfig{plot_15.png}
+\end{frame}
+
+\begin{frame}{2A: Discussion}
+\small
+\textbf{1. Consequence of segment length?}\\
+Segment length controls the time-frequency resolution tradeoff:
+\begin{itemize}
+\item Short $L$ (64): good time resolution ($\Delta t = 1.6\,$ms), poor frequency resolution ($\Delta f = 625\,$Hz).
+\item Long $L$ (512): good frequency resolution ($\Delta f = 78\,$Hz), poor time resolution ($\Delta t = 12.8\,$ms).
+\end{itemize}
+
+\vspace{0.5em}
+\textbf{2. Interfering chips (100-200\,ms)?}\\
+\begin{itemize}
+\item The chips are approximately $20\,$ms in duration.
+\item Their centre frequencies show a slight shift from chip to chip, possibly due to Doppler from a radially accelerating interferer.
+\end{itemize}
+\end{frame}
+
+% =============================================================================
+\section{Exercise 2B - Spectrogram Analysis (Channel 32)}
+% =============================================================================
+
+\begin{frame}{2B: Timeseries - Channel 32}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\small
+\begin{itemize}
+\item Channel 32, $M=400$, $N=8192$.
+\item Real part of the signal plotted.
+\item A burst of energy around $20\,$ms followed by decaying amplitude.
+\end{itemize}
+\column{0.62\textwidth}
+\colfig{plot_16.png}
+\end{columns}
+\end{frame}
+
+\begin{frame}{2B: Welch PSD - Channel 32}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\small
+\begin{itemize}
+\item Welch with $L=512$, $D=256$, Hanning.
+\item Spectrum resembles the LFM passband ($\pm15\,$kHz) with some leakage.
+\item Weak interfering tone near $-17\,$kHz.
+\item Much cleaner than Channel 14.
+\end{itemize}
+\column{0.62\textwidth}
+\colfig{plot_17.png}
+\end{columns}
+\end{frame}
+
+\begin{frame}{2B: STFT - Channel 32}
+\fullfig{plot_18.png}
+\end{frame}
+
+\begin{frame}{2B: Discussion - Channel 14 vs 32}
+\small
+\textbf{Signal characteristics (STFT):}
+\begin{itemize}
+\item The LFM echo is spread equally across $\pm15\,$kHz, starting around $20\,$ms and fading slowly.
+\item A weak interfering tone near $15\,$kHz appears around $130\,$ms.
+\item The $-17\,$kHz interferer from Channel 14 is barely visible here.
+\end{itemize}
+
+\vspace{0.5em}
+\textbf{Key difference between channels:}
+\begin{itemize}
+\item Channel 32 has much less interference from narrowband tones.
+\item The interferers that dominate Channel 14 are nearly absent in Channel 32.
+\item This spatial interference originates possibly from faulty electronics or near-field source rather than a far-field acoustic source which would appear similarly across all channels.
+\end{itemize}
+\end{frame}
+
+% =============================================================================
+\section*{Summary}
+% =============================================================================
+
+\begin{frame}{Summary}
+\begin{itemize}
+\item \textbf{Ex 1A:} Welch and multitaper reduce variance by $>10\times$ vs the periodogram, with lower passband bias. Estimated bandwidth is $32.1\,$kHz vss. ideal $30\,$kHz; spectral leakage and a $-17\,$kHz interferer bias the estimate.
+\item \textbf{Ex 1B:} Variance reduction merges closely spaced tones. High resolution periodogram or windowed periodogram is preferred to resolve narrowband signals.
+\item \textbf{Ex 2A:} STFT reveals time-varying events hidden by global PSD. Shorter segments improve time resolution at the cost of frequency resolution.
+\item \textbf{Ex 2B:} Channel 32 shows a cleaner LFM echo with minimal interference, suggesting the tones in Channel 14 originate from near-field, likely not far-field sources.
+\end{itemize}
+\end{frame}
+
+\end{document}

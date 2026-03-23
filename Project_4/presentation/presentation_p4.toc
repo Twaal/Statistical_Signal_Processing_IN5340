@@ -1,0 +1,5 @@
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@sectionintoc {2}{Exercise 1A - Spectral Estimation (Channel 14)}{4}{0}{2}
+\beamer@sectionintoc {3}{Exercise 1B - Spectral Estimation (Channel 9)}{10}{0}{3}
+\beamer@sectionintoc {4}{Exercise 2A - Spectrogram Analysis (Channel 14)}{12}{0}{4}
+\beamer@sectionintoc {5}{Exercise 2B - Spectrogram Analysis (Channel 32)}{17}{0}{5}
